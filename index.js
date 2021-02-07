@@ -16,25 +16,35 @@ const showDetalis = $('showDetalis');
 function inputValue(){
     const inputName = $('input').value;
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputName}`)
+
     .then(response => response.json())
     .then(data => {
+
         const foodName = data.meals;
         let htmlDesign = "";
-        foodName.forEach(element => {
 
-            htmlDesign +=`   
-            <div onclick="details('${element.strMeal}')" class="containt-img">
+        if(foodName){
+            foodName.forEach(element => {
 
-                <img src="${element.strMealThumb}"  alt="food img">
-
-                <h2>${element.strMeal}</h2>
-
-
-
-            </div>
-            `
-           
-        });
+                htmlDesign +=`   
+                <div onclick="details('${element.strMeal}')" class="containt-img">
+    
+                    <img src="${element.strMealThumb}"  alt="food img">
+    
+                    <h2>${element.strMeal}</h2>
+    
+    
+    
+                </div>
+                `
+               
+            });
+        }else{
+            htmlDesign = "Sorry, we didn't find any meal!";
+            // mealList.classList.add('notFound');
+            showDetalis.innerHTML = '';
+        }
+        
         foodItem.innerHTML = htmlDesign;
 
         
