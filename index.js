@@ -32,9 +32,7 @@ function inputValue(){
                     <img src="${element.strMealThumb}"  alt="food img">
     
                     <h2>${element.strMeal}</h2>
-    
-    
-    
+                    
                 </div>
                 `
                
